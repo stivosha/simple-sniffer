@@ -18,7 +18,7 @@ class Ethernet:
 
     def to_str(self):
         s = '| Ethernet:\n'
-        s += TAB_1 + f'Destination MAC: {self.s_mac}, Source MAC: {self.d_mac}, Protocol: {self.next_header}.'
+        s += TAB_1 + f'Destination MAC: {self.s_mac}, Source MAC: {self.d_mac}, Protocol: {self.next_header}.\n'
         return s
 
 
