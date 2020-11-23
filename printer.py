@@ -10,10 +10,10 @@ def get_all_frames_str(data):
         frame_constructor = parse_protocol(frame.next_header)
         proto = frame.next_header
         frame = frame_constructor(data)
-        data = frame.next_data
         if frame_constructor == UnknownPacket:
             output += frame.to_str(proto)
             return output
+        data = frame.next_data
         output += frame.to_str()
         if frame_constructor == BinaryData:
             return output

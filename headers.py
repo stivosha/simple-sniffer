@@ -40,7 +40,7 @@ class IPv4:
         s += f'Flags: {self.flags}, Fragmentation Offset: {self.fragment_offset},' \
              f' TTL: {self.TTL}, Protocol: {self.next_header}, ' \
              f'Header Checksum: {self.checksum}.\n' + TAB_1
-        s += f'Source IP: {self.s_ip}, Destination IP: {self.d_ip}.'
+        s += f'Source IP: {self.s_ip}, Destination IP: {self.d_ip}.\n'
         return s
 
 
@@ -57,7 +57,7 @@ class IPv6:
         s = '| IPv6:\n'
         s += TAB_1 + f'Version: {self.version}, Payload label: {self.payload}.\n'
         s += TAB_1 + f'Protocol: {self.next_header}, HOP Limit: {self.limit}.\n'
-        s += TAB_1 + f'Source IP: {self.s_ip}, Destination IP: {self.d_ip}.'
+        s += TAB_1 + f'Source IP: {self.s_ip}, Destination IP: {self.d_ip}.\n'
         return s
 
 
@@ -81,7 +81,7 @@ class TCP:
         s += TAB_1 + f'Checksum: {self.checksum}, Urgent Point: {self.urgent_pointer}.\n'
         s += TAB_1 + 'Flags:\n'
         s += TAB_2 + f'URG: {self.flags[0]}, ACK: {self.flags[1]}, PSH: {self.flags[2]}\n'
-        s += TAB_2 + f'RST: {self.flags[3]}, SYN: {self.flags[4]}, FIN: {self.flags[5]}'
+        s += TAB_2 + f'RST: {self.flags[3]}, SYN: {self.flags[4]}, FIN: {self.flags[5]}\n'
         return s
 
 
@@ -97,7 +97,7 @@ class UDP:
     def to_str(self):
         s = '| UDP Segment:\n'
         s += TAB_1 + f'Source Port: {self.s_port}, Destination Port: {self.d_port}.\n'
-        s += TAB_1 + f'Length: {self.length}, Checksum: {self.checksum}.'
+        s += TAB_1 + f'Length: {self.length}, Checksum: {self.checksum}.\n'
         return s
 
 
@@ -109,7 +109,7 @@ class BinaryData:
 
     def to_str(self):
         s = HexDump(self.data).hex_string
-        return '| Data:\n' + str(s)
+        return '| Data:\n' + str(s) + "\n"
 
 
 class UnknownPacket:
@@ -119,7 +119,7 @@ class UnknownPacket:
 
     def to_str(self, proto):
         s = HexDump(self.data).hex_string
-        return f'| Unknown protocol number: {proto}\n' + str(s)
+        return f'| Unknown protocol number: {proto}\n' + str(s) + "\n"
 
 
 class HexDump:
