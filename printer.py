@@ -13,7 +13,7 @@ def get_all_frames_str(data):
         if frame_constructor == UnknownPacket:
             output += frame.to_str(proto)
             return output
-        data = frame.next_data
         output += frame.to_str()
         if frame_constructor == BinaryData:
             return output
+        data = frame.next_data
