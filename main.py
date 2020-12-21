@@ -23,7 +23,7 @@ class Sniffer:
                     print(get_all_frames_str(raw_data))
 
     def pcap_mod(self):
-        data = {i: self.conn.receive_from() for i in range(self.args.count)}
+        data = {i: self.conn.recvfrom(65536)[0] for i in range(self.args.count)}
         PcapFile(self.args.pcap).write_pcap(data)
 
 
