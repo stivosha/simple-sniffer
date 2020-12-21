@@ -10,14 +10,17 @@ class Sniffer:
         self.args = args
 
     def start(self):
-        if self.args.count is not None:
-            for i in range(self.args.count):
-                raw_data, addr = self.conn.recvfrom(65536)
-                print(get_all_frames_str(raw_data))
+        if self.args.pcap is not None:
+            self.pcap_mod()
         else:
-            while True:
-                raw_data, addr = self.conn.recvfrom(65536)
-                print(get_all_frames_str(raw_data))
+            if self.args.count is not None:
+                for i in range(self.args.count):
+                    raw_data, addr = self.conn.recvfrom(65536)
+                    print(get_all_frames_str(raw_data))
+            else:
+                while True:
+                    raw_data, addr = self.conn.recvfrom(65536)
+                    print(get_all_frames_str(raw_data))
 
     def pcap_mod(self):
         data = {i: self.conn.receive_from() for i in range(self.args.count)}
